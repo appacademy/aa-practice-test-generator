@@ -48,3 +48,9 @@ For both generators, 3 files will be created inside the generated folder as foll
 - `solution.rb` combines the solutions for each problem
 
 **Warning**: If you run the generator again, it will re-write the previously generated files and erase your previous work. If you wish to save your previous work, you will need to rename the files. This applies to both generators.
+
+### Ben's `reset` feature and non-duplication of practice problems
+
+My fork of this generator ensures that by default when you randomly generate practice tests, you will never get duplicate problems unless you so choose to. The program now keeps track of every problem it's given you and only gives you problems you have never seen before, until you decide to reset the program.
+
+If you would like to reset the program, run the category generator with `ruby category_generator.rb`, then input `reset` when prompted. This will reset the program to its default state with randomly generated practice problems being drawn from the entire list of all possible problems again.
