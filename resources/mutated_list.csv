@@ -1,4 +1,4 @@
-Name,Category,ProblemFile,SpecFile,SolutionFile
+name,category,problemfile,specfile,solutionfile
 anagrams,string,problems/anagrams.rb,specs/anagrams_spec.rb,solutions/anagrams_solution.rb
 base_converter,bonus,problems/base_converter.rb,specs/base_converter_spec.rb,solutions/base_converter_solution.rb
 binary_search,sort,problems/binary_search.rb,specs/binary_search_spec.rb,solutions/binary_search_solution.rb

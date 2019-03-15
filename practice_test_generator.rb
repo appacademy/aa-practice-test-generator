@@ -82,6 +82,13 @@ master.each do |test|
   solution << File.read(test[4]) << "\n"
 end
 
+# === BEN'S MUTATIVE LIST EDIT ===
+# loop through master tests and remove those tests from the CSV file
+new_csv = CSV.table('resources/mutated_list.csv', headers: true, header_converters: :symbol, converters: :all)
+new_csv.delete_if { |row| master.include?(row) }
+#rewrite the mutated_list with the csv file minus all the rows that were already generated as test questions
+File.open('resources/mutated_list.csv', 'w') { |f| f.write(new_csv.to_csv) }
+
 # Close the files that were just created
 practice_test.close
 spec.close
