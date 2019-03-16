@@ -42,6 +42,7 @@ puts "Example input: " + "array: 2, recursion: 1, sort: 1".yellow
 puts "If you would like ALL problems from ALL categories, input: " + "all".yellow
 puts "If you'd like all problems, EXCEPT bonus problems, input: " + "all, except: bonus".yellow
 puts "If you'd like to reset the generator to all original problems again, input: " + "reset".green
+puts
 
 input = gets.chomp.split(", ")
 
@@ -79,7 +80,13 @@ if input == ["reset"]
   puts "Example input: " + "array: 2, recursion: 1, sort: 1".yellow
   puts "If you would like ALL problems from ALL categories, input: " + "all".yellow
   puts "If you'd like all problems, EXCEPT bonus problems, input: " + "all, except: bonus".yellow
+  puts; puts "Input 'quit' or 'exit' if you would like to exit and use 'practice_generator.rb' instead.".green
+  puts
   input = gets.chomp.split(", ")
+end
+
+if input == ["quit"] || input == ["exit"]
+  exit
 end
 
 system("clear")
