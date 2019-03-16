@@ -92,13 +92,13 @@ end
 # create new test, spec and solution files
 FileUtils.rm_r("category_assessment") if File.directory?("category_assessment")
 Dir.mkdir("category_assessment")
-practice_test = File.open("category_assessment/practice_test.rb", "w")
-spec = File.open("category_assessment/spec.rb", "w")
-solution = File.open("category_assessment/solution.rb", "w")
+practice_test = File.open("lib/practice_test.rb", "w")
+spec = File.open("spec/practice_test_spec.rb", "w")
+solution = File.open("lib/solution.rb", "w")
 
 # require rspec and the practice_test in the spec
 spec << "require 'rspec'" << "\n"
-spec << "require_relative 'practice_test'" << "\n"
+spec << "require 'practice_test'" << "\n"
 
 # loop through master tests and add text to the new files
 master.each do |test|

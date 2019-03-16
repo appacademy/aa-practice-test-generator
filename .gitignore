@@ -1,6 +1,8 @@
 # Ignore generated test files
 practice_assessment/
 category_assessment/
+lib/
+spec/
 practice_test.rb
 solution.rb
 spec.rb
