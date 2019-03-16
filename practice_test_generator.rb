@@ -71,7 +71,7 @@ spec = File.open("spec/practice_test_spec.rb", "w")
 solution = File.open("lib/solution.rb", "w")
 
 # Copy README into preactice directory
-FileUtils.cp("./resources/README.md", "./practice_assessment/")
+FileUtils.cp("./resources/README.md", "./lib/")
 
 # Require rspec and the practice_test in the spec
 spec << "require 'rspec'" << "\n"
