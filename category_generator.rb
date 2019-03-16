@@ -90,8 +90,10 @@ categories.each do |category|
 end
 
 # create new test, spec and solution files
-FileUtils.rm_r("category_assessment") if File.directory?("category_assessment")
-Dir.mkdir("category_assessment")
+FileUtils.rm_r("lib") if File.directory?("lib")
+Dir.mkdir("lib")
+FileUtils.rm_r("spec") if File.directory?("spec")
+Dir.mkdir("spec")
 practice_test = File.open("lib/practice_test.rb", "w")
 spec = File.open("spec/practice_test_spec.rb", "w")
 solution = File.open("lib/solution.rb", "w")
