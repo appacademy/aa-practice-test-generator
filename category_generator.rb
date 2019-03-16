@@ -45,11 +45,6 @@ puts "If you'd like to reset the generator to all original problems again, input
 
 input = gets.chomp.split(", ")
 
-system("clear")
-puts "I am generating a practice assessment with solutions that will be saved"
-puts "as 'lib/' in your current directory, and specs that will be saved in"
-puts "'spec/' in your current directory. To run specs, type 'bundle exec rspec'"
-
 # === BEN'S RESET EDIT ===
 if input == ["reset"]
 
@@ -57,14 +52,40 @@ if input == ["reset"]
   #rewrite the mutated_list with the original list csv file with all the questions again
   File.open('resources/mutated_list.csv', 'w') { |f| f.write(original_csv.to_csv) }
 
+  system('clear')
   puts "Generator successfully reset to all original questions.".green
   sleep(1)
+  # read in csv with test info
+  tests = CSV.read('resources/mutated_list.csv', headers: true, header_converters: :symbol, converters: :all)
+  # add a method to reset the mutated list to the original list if desired
+
+  # list possible categories
+  categories = Array.new
+  tests.each do |test|
+    categories << test[1]
+  end
+  # count how many of each kind of problem remain
+  category_counter = Hash.new(0)
+  categories.each { |category| category_counter[category] += 1 }
+  categories = categories.uniq
+  puts
+
+  puts "Possible categories: #{categories.join(", ")}".magenta
+  print "Problems remaining per category: |".magenta
+  category_counter.each { |cat, num| print " #{cat}: #{num} |".magenta }
+  puts; puts
+
   puts "Input your requests, separated by commas and spaces please"
   puts "Example input: " + "array: 2, recursion: 1, sort: 1".yellow
   puts "If you would like ALL problems from ALL categories, input: " + "all".yellow
   puts "If you'd like all problems, EXCEPT bonus problems, input: " + "all, except: bonus".yellow
   input = gets.chomp.split(", ")
 end
+
+system("clear")
+puts "I am generating a practice assessment with solutions that will be saved"
+puts "as 'lib/' in your current directory, and specs that will be saved in"
+puts "'spec/' in your current directory. To run specs, type 'bundle exec rspec'"
 
 if input == ["all"]
   input = categories.map { |cat| cat += ": 20" }
@@ -136,6 +157,6 @@ solution.close
 sleep(0.5)
 puts 
 print "New problems remaining per category: |".magenta
-category_counter.each { |cat, num| print " #{cat}: #{num} |".magenta }
+category_counter.each { |cat, num| print " #{cat}: #{num} |".magenta if num >= 0 }
 puts; puts
 puts "Done!"
