@@ -4,8 +4,9 @@ require 'fileutils'
 
 # Instructions
 system("clear")
-puts "I am generating a practice assessment that will be saved"
-puts "as 'practice_assessment/' in your current directory"
+puts "I am generating a practice assessment with solutions that will be saved"
+puts "as 'lib/' in your current directory, and specs that will be saved in"
+puts "'spec/' in your current directory. To run specs, type 'bundle exec rspec'"
 
 # Read in csv with test info
 tests = CSV.read(

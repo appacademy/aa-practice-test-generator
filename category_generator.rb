@@ -40,8 +40,9 @@ puts "If you'd like to reset the generator to all original problems again, input
 input = gets.chomp.split(", ")
 
 system("clear")
-puts "I am generating a practice assessment that will be saved"
-puts "as 'practice_assessment/' in your current directory"
+puts "I am generating a practice assessment with solutions that will be saved"
+puts "as 'lib/' in your current directory, and specs that will be saved in"
+puts "'spec/' in your current directory. To run specs, type 'bundle exec rspec'"
 
 # === BEN'S RESET EDIT ===
 if input == ["reset"]
