@@ -4,18 +4,18 @@ require 'fileutils'
 
 # Instructions
 system("clear")
-puts "Welcome to a/A's Practice Assessment Generator".cyan
-puts "This generator will create a practice test based on your input. " \
+puts; puts "Welcome to a/A's Practice Assessment Generator".cyan
+puts; puts "This generator will create a practice test based on your input. " \
       "You can choose how many problems from each category to include in your test. "
-puts "This program will generate 3 files in this folder: practice_test, spec, and solution. " \
+puts; puts "This program will generate 3 files in this folder: practice_test, spec, and solution. " \
       "Complete the practice_test file, running the spec file to check your answers. " \
       "When your time is up (you are timing yourself, right?), compare your answers to the solutions."
-puts "NB: Ben's quick addition to the generator now ensures that you don't get random questions" \
-    "you've already completed, so you can generate random tests of a reasonable size while ensuring" \
-    "you don't just keep doing the same problems over and over again and miss some problems you've never" \
-    "encountered before. If you would like to reset the list to the full list of questions at any point," \
+puts; puts "NB: Ben's quick addition to the generator now ensures that you don't get random questions " \
+    "you've already completed, so you can generate random tests of a reasonable size while ensuring " \
+    "you don't just keep doing the same problems over and over again and miss some problems you've never " \
+    "encountered before. If you would like to reset the list to the full list of questions at any point, " \
     "just type 'reset'."
-puts "Good luck!"
+puts; puts "Good luck!"
 
 # read in csv with test info
 tests = CSV.read('resources/mutated_list.csv', headers: true, header_converters: :symbol, converters: :all)
@@ -26,9 +26,15 @@ categories = Array.new
 tests.each do |test|
   categories << test[1]
 end
+# count how many of each kind of problem remain
+category_counter = Hash.new(0)
+categories.each { |category| category_counter[category] += 1 }
 categories = categories.uniq
-puts "Possible categories: #{categories.join(", ")}".magenta
 puts
+puts "Possible categories: #{categories.join(", ")}".magenta
+print "Problems remaining per category: |".magenta
+category_counter.each { |cat, num| print " #{cat}: #{num} |".magenta }
+puts; puts
 
 # get user request
 puts "Input your requests, separated by commas and spaces please"
@@ -72,7 +78,9 @@ end
 categoryrequests = Hash.new(0)
 input.each do |request|
   req = request.downcase.split(": ")
-  categoryrequests[req[0]] = req[1].to_i
+  cat = req[0]; num = req[1]
+  categoryrequests[cat] = num.to_i
+  category_counter[cat] -= num.to_i # decrement category counter too
 end
 
 # make test array for each category
@@ -127,4 +135,7 @@ solution.close
 
 sleep(0.5)
 puts 
+print "New problems remaining per category: |".magenta
+category_counter.each { |cat, num| print " #{cat}: #{num} |".magenta }
+puts; puts
 puts "Done!"

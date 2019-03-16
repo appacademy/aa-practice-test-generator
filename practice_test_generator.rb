@@ -10,7 +10,7 @@ puts "'spec/' in your current directory. To run specs, type 'bundle exec rspec'"
 
 # Read in csv with test info
 tests = CSV.read(
-          'resources/list.csv', 
+          'resources/mutated_list.csv', 
           headers: true, 
           header_converters: :symbol, 
           converters: :all
@@ -40,10 +40,12 @@ omit_problems = ['permutations',
                  'my_select'
                 ]
 
+category_counter = Hash.new(0) # count problems per category
 categories.each do |category, num|
   problems_in_category = []
   tests.each do |test|
     if category.to_s == test[1]
+      category_counter[category] += 1 # increment problems per category
       if !omit_problems.include?(test[0])
         problems_in_category << test
       end
@@ -62,6 +64,9 @@ categories.each do |category, num|
   end
 end
 
+# decrement from the category counter how many problems were taken from each cat
+categories.each { |category, num| category_counter[category] -= num }
+
 # Create new test, spec and solution files
 FileUtils.rm_r("lib") if File.directory?("lib")
 Dir.mkdir("lib")
@@ -71,7 +76,7 @@ practice_test = File.open("lib/practice_test.rb", "w")
 spec = File.open("spec/practice_test_spec.rb", "w")
 solution = File.open("lib/solution.rb", "w")
 
-# Copy README into preactice directory
+# Copy README into practice directory
 FileUtils.cp("./resources/README.md", "./lib/")
 
 # Require rspec and the practice_test in the spec
@@ -80,9 +85,11 @@ spec << "require 'practice_test'" << "\n"
 
 # Loop through master tests and add text to the new files
 master.each do |test|
-  practice_test << File.read(test[2]) << "\n"
-  spec << File.read(test[3]) << "\n"
-  solution << File.read(test[4]) << "\n"
+  if test
+    practice_test << File.read(test[2]) << "\n"
+    spec << File.read(test[3]) << "\n"
+    solution << File.read(test[4]) << "\n"
+  end
 end
 
 # === BEN'S MUTATIVE LIST EDIT ===
@@ -97,8 +104,14 @@ practice_test.close
 spec.close
 solution.close
 
+puts
 puts "Beep." 
 puts "Bop."
 puts "Boop." 
 puts "Beep." 
 puts "Done!"
+
+puts
+print "New problems remaining per category: |".magenta
+category_counter.each { |cat, num| print " #{cat}: #{num} |".magenta if num >= 0 }
+puts

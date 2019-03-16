@@ -7,3 +7,4 @@ practice_test.rb
 solution.rb
 spec.rb
 .DS_Store
+.byebug_history
