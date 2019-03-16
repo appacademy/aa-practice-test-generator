@@ -2,11 +2,12 @@
 # of the string that appear in the dictionary argument. 
 # The method does NOT return any duplicates.
 
+# new correct solution contributed by Victoria and Joshua
 class String
   def real_words_in_string(dictionary)
     real_words = []
-    (1...self.length - 1).to_a.my_each do |first|
-      (first + 1...self.length).to_a.my_each do |last|
+    (1...self.length - 1).each do |first|
+      (first + 1...self.length).each do |last|
         word = self[first...last]
         if dictionary.include?(word)
           real_words << word unless real_words.include?(word)
@@ -16,3 +17,18 @@ class String
     real_words
   end
 end
+
+# class String
+#   def real_words_in_string(dictionary)
+#     real_words = []
+#     (1...self.length - 1).to_a.my_each do |first|
+#       (first + 1...self.length).to_a.my_each do |last|
+#         word = self[first...last]
+#         if dictionary.include?(word)
+#           real_words << word unless real_words.include?(word)
+#         end
+#       end
+#     end
+#     real_words
+#   end
+# end
