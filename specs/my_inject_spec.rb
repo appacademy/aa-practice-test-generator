@@ -1,13 +1,13 @@
 describe 'Array#my_inject' do
 
-  it "should use #my_each, NOT built-in ruby method" do
-    arr = [1, 2, 3]
-    expect(arr).to receive(:my_each).and_call_original
-    expect(arr).not_to receive(:each)
-    expect(arr).not_to receive(:map)
-    expect(arr).not_to receive(:map!)
-    arr.my_inject(1) { |acc, x| acc + x }
-  end
+  # it "should use #my_each, NOT built-in ruby method" do
+  #   arr = [1, 2, 3]
+  #   expect(arr).to receive(:my_each).and_call_original
+  #   expect(arr).not_to receive(:each)
+  #   expect(arr).not_to receive(:map)
+  #   expect(arr).not_to receive(:map!)
+  #   arr.my_inject(1) { |acc, x| acc + x }
+  # end
 
   it 'calls the block passed to it' do
     expect do |block|
