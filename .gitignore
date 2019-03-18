@@ -5,6 +5,6 @@ lib/
 spec/
 practice_test.rb
 solution.rb
-spec.rb
+practice_test_spec.rb
 .DS_Store
 .byebug_history
