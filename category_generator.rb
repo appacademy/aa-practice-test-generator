@@ -164,6 +164,6 @@ solution.close
 sleep(0.5)
 puts 
 print "New problems remaining per category: |".magenta
-category_counter.each { |cat, num| print " #{cat}: #{num} |".magenta if num >= 0 }
+category_counter.each { |cat, num| print " #{cat}: #{num} |".magenta if num > 0 }
 puts; puts
 puts "Done!"
