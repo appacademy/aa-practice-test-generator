@@ -8,10 +8,10 @@ This is a practice test generator to prepare for A01, your first assessment at A
 
 2. Navigate to your local repo directory in terminal and run one of the following generators (detailed in below section):
 
-   - `ruby practice_test_generator.rb` - Generates a practice test in a folder called `practice_assessment`
-   - `ruby category_generator.rb` - Generates a test by category, based on how many problems of each category you want in a folder called `category_assessment` (requires following a prompt)
+   - `ruby practice_test_generator.rb` - Generates a practice test with a standard assortment of various questions representative of what you might see on the actual test
+   - `ruby category_generator.rb` - Generates a test by category, based on how many problems of each category you want (requires following a prompt)
 
-3. Navigate to the directory that was generated from running one of the above commands. Run `bundle exec rspec spec.rb` to test your answers against the spec as you work through `practice_test.rb`.
+3. Run `bundle exec rspec` from your local repo directory to test your answers against the spec as you work through `lib/practice_test.rb`. You should run this command from the directory that contains both the `/lib` and `/spec` folders that were created by running the generator.
 
 4. Check your solutions against those in `solution.rb`.
 
