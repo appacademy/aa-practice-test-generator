@@ -8,3 +8,4 @@ solution.rb
 practice_test_spec.rb
 .DS_Store
 .byebug_history
+Gemfile.lock
